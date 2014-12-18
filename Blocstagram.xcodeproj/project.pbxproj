@@ -10,9 +10,7 @@
 		93E252E41A4283B0006CD452 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252E31A4283B0006CD452 /* main.m */; };
 		93E252E71A4283B0006CD452 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252E61A4283B0006CD452 /* AppDelegate.m */; };
 		93E252EA1A4283B0006CD452 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252E91A4283B0006CD452 /* ViewController.m */; };
-		93E252ED1A4283B0006CD452 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93E252EB1A4283B0006CD452 /* Main.storyboard */; };
 		93E252EF1A4283B0006CD452 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93E252EE1A4283B0006CD452 /* Images.xcassets */; };
-		93E252F21A4283B0006CD452 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93E252F01A4283B0006CD452 /* LaunchScreen.xib */; };
 		93E252FE1A4283B1006CD452 /* BlocstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252FD1A4283B1006CD452 /* BlocstagramTests.m */; };
 /* End PBXBuildFile section */
 
@@ -34,9 +32,7 @@
 		93E252E61A4283B0006CD452 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		93E252E81A4283B0006CD452 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		93E252E91A4283B0006CD452 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		93E252EC1A4283B0006CD452 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93E252EE1A4283B0006CD452 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		93E252F11A4283B0006CD452 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		93E252F71A4283B1006CD452 /* BlocstagramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocstagramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93E252FC1A4283B1006CD452 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93E252FD1A4283B1006CD452 /* BlocstagramTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocstagramTests.m; sourceTree = "<group>"; };
@@ -85,9 +81,7 @@
 				93E252E61A4283B0006CD452 /* AppDelegate.m */,
 				93E252E81A4283B0006CD452 /* ViewController.h */,
 				93E252E91A4283B0006CD452 /* ViewController.m */,
-				93E252EB1A4283B0006CD452 /* Main.storyboard */,
 				93E252EE1A4283B0006CD452 /* Images.xcassets */,
-				93E252F01A4283B0006CD452 /* LaunchScreen.xib */,
 				93E252E11A4283B0006CD452 /* Supporting Files */,
 			);
 			path = Blocstagram;
@@ -199,8 +193,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93E252ED1A4283B0006CD452 /* Main.storyboard in Resources */,
-				93E252F21A4283B0006CD452 /* LaunchScreen.xib in Resources */,
 				93E252EF1A4283B0006CD452 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,25 +234,6 @@
 			targetProxy = 93E252F81A4283B1006CD452 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		93E252EB1A4283B0006CD452 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				93E252EC1A4283B0006CD452 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		93E252F01A4283B0006CD452 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				93E252F11A4283B0006CD452 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		93E252FF1A4283B1006CD452 /* Debug */ = {
