@@ -7,11 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9301B1131A462F3200B3A288 /* piramide.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9301B1111A462F3200B3A288 /* piramide.jpg */; };
+		9301B1141A462F3200B3A288 /* scotland.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9301B1121A462F3200B3A288 /* scotland.jpg */; };
+		9301B1161A46385E00B3A288 /* pinata.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9301B1151A46385E00B3A288 /* pinata.jpg */; };
+		93AF32CF1A43A1710072A004 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93AF32CE1A43A1710072A004 /* Default-568h@2x.png */; };
 		93E252E41A4283B0006CD452 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252E31A4283B0006CD452 /* main.m */; };
-		93E252E71A4283B0006CD452 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252E61A4283B0006CD452 /* AppDelegate.m */; };
-		93E252EA1A4283B0006CD452 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252E91A4283B0006CD452 /* ViewController.m */; };
+		93E252E71A4283B0006CD452 /* BLCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252E61A4283B0006CD452 /* BLCAppDelegate.m */; };
+		93E252EA1A4283B0006CD452 /* BLCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252E91A4283B0006CD452 /* BLCViewController.m */; };
 		93E252EF1A4283B0006CD452 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93E252EE1A4283B0006CD452 /* Images.xcassets */; };
 		93E252FE1A4283B1006CD452 /* BlocstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252FD1A4283B1006CD452 /* BlocstagramTests.m */; };
+		93E253121A428995006CD452 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93E253081A428995006CD452 /* 1.jpg */; };
+		93E253131A428995006CD452 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93E253091A428995006CD452 /* 2.jpg */; };
+		93E253151A428995006CD452 /* DSCF2907.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 93E2530B1A428995006CD452 /* DSCF2907.JPG */; };
+		93E253161A428995006CD452 /* houseparty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93E2530C1A428995006CD452 /* houseparty.jpg */; };
+		93E253181A428995006CD452 /* IMG_3399.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93E2530E1A428995006CD452 /* IMG_3399.jpg */; };
+		93E253191A428995006CD452 /* notredame.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93E2530F1A428995006CD452 /* notredame.jpg */; };
+		93E2531B1A428995006CD452 /* salamanca.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93E253111A428995006CD452 /* salamanca.jpg */; };
+		93E2531E1A428AB4006CD452 /* BLCImagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E2531D1A428AB4006CD452 /* BLCImagesTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,17 +37,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9301B1111A462F3200B3A288 /* piramide.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = piramide.jpg; sourceTree = "<group>"; };
+		9301B1121A462F3200B3A288 /* scotland.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = scotland.jpg; sourceTree = "<group>"; };
+		9301B1151A46385E00B3A288 /* pinata.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pinata.jpg; sourceTree = "<group>"; };
+		93AF32CE1A43A1710072A004 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		93E252DE1A4283B0006CD452 /* Blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93E252E21A4283B0006CD452 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93E252E31A4283B0006CD452 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		93E252E51A4283B0006CD452 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		93E252E61A4283B0006CD452 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		93E252E81A4283B0006CD452 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		93E252E91A4283B0006CD452 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		93E252E51A4283B0006CD452 /* BLCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLCAppDelegate.h; sourceTree = "<group>"; };
+		93E252E61A4283B0006CD452 /* BLCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLCAppDelegate.m; sourceTree = "<group>"; };
+		93E252E81A4283B0006CD452 /* BLCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLCViewController.h; sourceTree = "<group>"; };
+		93E252E91A4283B0006CD452 /* BLCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLCViewController.m; sourceTree = "<group>"; };
 		93E252EE1A4283B0006CD452 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		93E252F71A4283B1006CD452 /* BlocstagramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocstagramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93E252FC1A4283B1006CD452 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93E252FD1A4283B1006CD452 /* BlocstagramTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocstagramTests.m; sourceTree = "<group>"; };
+		93E253081A428995006CD452 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		93E253091A428995006CD452 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		93E2530B1A428995006CD452 /* DSCF2907.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DSCF2907.JPG; sourceTree = "<group>"; };
+		93E2530C1A428995006CD452 /* houseparty.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = houseparty.jpg; sourceTree = "<group>"; };
+		93E2530E1A428995006CD452 /* IMG_3399.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_3399.jpg; sourceTree = "<group>"; };
+		93E2530F1A428995006CD452 /* notredame.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = notredame.jpg; sourceTree = "<group>"; };
+		93E253111A428995006CD452 /* salamanca.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = salamanca.jpg; sourceTree = "<group>"; };
+		93E2531C1A428AB4006CD452 /* BLCImagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCImagesTableViewController.h; sourceTree = "<group>"; };
+		93E2531D1A428AB4006CD452 /* BLCImagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCImagesTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +84,7 @@
 		93E252D51A4283B0006CD452 = {
 			isa = PBXGroup;
 			children = (
+				93AF32CE1A43A1710072A004 /* Default-568h@2x.png */,
 				93E252E01A4283B0006CD452 /* Blocstagram */,
 				93E252FA1A4283B1006CD452 /* BlocstagramTests */,
 				93E252DF1A4283B0006CD452 /* Products */,
@@ -77,11 +103,14 @@
 		93E252E01A4283B0006CD452 /* Blocstagram */ = {
 			isa = PBXGroup;
 			children = (
-				93E252E51A4283B0006CD452 /* AppDelegate.h */,
-				93E252E61A4283B0006CD452 /* AppDelegate.m */,
-				93E252E81A4283B0006CD452 /* ViewController.h */,
-				93E252E91A4283B0006CD452 /* ViewController.m */,
+				93E253071A42894F006CD452 /* Images */,
+				93E252E51A4283B0006CD452 /* BLCAppDelegate.h */,
+				93E252E61A4283B0006CD452 /* BLCAppDelegate.m */,
+				93E252E81A4283B0006CD452 /* BLCViewController.h */,
+				93E252E91A4283B0006CD452 /* BLCViewController.m */,
 				93E252EE1A4283B0006CD452 /* Images.xcassets */,
+				93E2531C1A428AB4006CD452 /* BLCImagesTableViewController.h */,
+				93E2531D1A428AB4006CD452 /* BLCImagesTableViewController.m */,
 				93E252E11A4283B0006CD452 /* Supporting Files */,
 			);
 			path = Blocstagram;
@@ -111,6 +140,23 @@
 				93E252FC1A4283B1006CD452 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		93E253071A42894F006CD452 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				93E253081A428995006CD452 /* 1.jpg */,
+				93E253091A428995006CD452 /* 2.jpg */,
+				93E2530B1A428995006CD452 /* DSCF2907.JPG */,
+				93E2530C1A428995006CD452 /* houseparty.jpg */,
+				9301B1151A46385E00B3A288 /* pinata.jpg */,
+				9301B1111A462F3200B3A288 /* piramide.jpg */,
+				9301B1121A462F3200B3A288 /* scotland.jpg */,
+				93E2530E1A428995006CD452 /* IMG_3399.jpg */,
+				93E2530F1A428995006CD452 /* notredame.jpg */,
+				93E253111A428995006CD452 /* salamanca.jpg */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,7 +239,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93E253191A428995006CD452 /* notredame.jpg in Resources */,
 				93E252EF1A4283B0006CD452 /* Images.xcassets in Resources */,
+				93AF32CF1A43A1710072A004 /* Default-568h@2x.png in Resources */,
+				9301B1131A462F3200B3A288 /* piramide.jpg in Resources */,
+				93E253121A428995006CD452 /* 1.jpg in Resources */,
+				93E253151A428995006CD452 /* DSCF2907.JPG in Resources */,
+				9301B1161A46385E00B3A288 /* pinata.jpg in Resources */,
+				9301B1141A462F3200B3A288 /* scotland.jpg in Resources */,
+				93E253131A428995006CD452 /* 2.jpg in Resources */,
+				93E2531B1A428995006CD452 /* salamanca.jpg in Resources */,
+				93E253161A428995006CD452 /* houseparty.jpg in Resources */,
+				93E253181A428995006CD452 /* IMG_3399.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,9 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93E252EA1A4283B0006CD452 /* ViewController.m in Sources */,
-				93E252E71A4283B0006CD452 /* AppDelegate.m in Sources */,
+				93E252EA1A4283B0006CD452 /* BLCViewController.m in Sources */,
+				93E252E71A4283B0006CD452 /* BLCAppDelegate.m in Sources */,
 				93E252E41A4283B0006CD452 /* main.m in Sources */,
+				93E2531E1A428AB4006CD452 /* BLCImagesTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +445,7 @@
 				93E253031A4283B1006CD452 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		93E253041A4283B1006CD452 /* Build configuration list for PBXNativeTarget "BlocstagramTests" */ = {
 			isa = XCConfigurationList;
@@ -395,6 +454,7 @@
 				93E253061A4283B1006CD452 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
