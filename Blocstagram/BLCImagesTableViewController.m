@@ -123,10 +123,18 @@
         // Delete the image from the image array
         
         //Remove from the list - 12/28/14 success! :D
+//        [self.images removeObjectAtIndex:[indexPath row]];
+//        [tableView reloadData];
+        
+        // testing.
         [self.images removeObjectAtIndex:[indexPath row]];
-        
-        
-        [tableView reloadData];
+
+        [tableView beginUpdates];
+//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+        [tableView endUpdates];
 
         /*Below are the two failed attempts to delete the image that I tried
         #1 [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
