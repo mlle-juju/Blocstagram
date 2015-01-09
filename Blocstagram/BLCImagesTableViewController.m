@@ -19,7 +19,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.images = [NSMutableArray array];
+        //self.images = [NSMutableArray array];
         
     }
     return self;
@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     
-    NSDictionary *images = @{@1: @"1.jpg",
+    /*NSDictionary *images = @{@1: @"1.jpg",
                              @2: @"2.jpg",
                              @3: @"DSCF2907.JPG",
                              @4: @"houseparty.jpg",
@@ -39,15 +39,18 @@
                              @8: @"IMG_3399.jpg",
                              @9: @"notredame.jpg",
                              @10: @"salamanca.jpg",
-                             };
+                             }; */
     
-    for (int i = 1; i <= 10; i++) {
+    /* for (int i = 1; i <= 10; i++) {
         NSString *imageName = images[[NSNumber numberWithInt:i]];
         UIImage *image = [UIImage imageNamed:imageName];
         if (image) {
             [self.images addObject:image];
         }
-    }
+    } */
+    
+   // UIImage *images = [[UIImage alloc] init];
+    
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"imageCell"];
 }
@@ -68,8 +71,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.images.count;
-    
+    return [self items].count;
 }
 
 
@@ -94,9 +96,9 @@
         
     }
     
-        UIImage *image = self.images[indexPath.row];
-        imageView.image = image;
-        
+    BLCMedia *item = [self items][indexPath.row];
+    imageView.image = item.image;
+    
         return cell;
 
 
@@ -105,7 +107,9 @@
 #pragma mark - Cell height
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIImage *image = self.images[indexPath.row];
+
+    BLCMedia *item = [self items][indexPath.row];
+    UIImage *image = item.image;
     return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
 }
 
@@ -126,14 +130,13 @@
 //        [self.images removeObjectAtIndex:[indexPath row]];
 //        [tableView reloadData];
         
-        // testing.
-        [self.images removeObjectAtIndex:[indexPath row]];
-
+        
+        //[[self items] removeObjectAtIndex:[indexPath row]];
+        
+        [[BLCDataSource sharedInstance] removeDataItem:indexPath.row];
+        
         [tableView beginUpdates];
-//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
         [tableView endUpdates];
 
         /*Below are the two failed attempts to delete the image that I tried
@@ -185,6 +188,10 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+-(NSArray *)items {
+    return [BLCDataSource sharedInstance].mediaItems;
+}
 
 
 @end
