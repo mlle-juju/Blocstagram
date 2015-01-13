@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BLOCMediaTableViewCell : UITableViewCell
+
+@class BLCMedia;
+@interface BLCMediaTableViewCell : UITableViewCell
+@property (nonatomic, strong) BLCMedia *mediaItem;
++ (CGFloat) heightForMediaItem:(BLCMedia *)mediaItem width:(CGFloat)width;
 
 @end
