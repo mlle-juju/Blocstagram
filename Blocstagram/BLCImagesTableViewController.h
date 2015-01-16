@@ -18,4 +18,5 @@
 //@property (nonatomic, strong) UIImage *images;
 
     -(NSArray *)items;
+//@selector countOfitems;
 @end
