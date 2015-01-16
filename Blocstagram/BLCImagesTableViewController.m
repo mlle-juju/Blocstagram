@@ -54,7 +54,13 @@
     
     [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
     
+    //[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(startEditing) userInfo:nil repeats:NO];
+    
 }
+
+/*- (void)startEditing {
+    [self setEditing:YES];
+}*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
