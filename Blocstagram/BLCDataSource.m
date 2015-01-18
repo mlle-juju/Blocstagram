@@ -11,7 +11,11 @@
 #import "BLCMedia.h"
 #import "BLCComment.h"
 
-@interface BLCDataSource ()
+@interface BLCDataSource () {
+    NSMutableArray *_mediaItems; //An array must be accesible as an instance variable names _<key> or by a method named -<key> to be (which returns a reference to the array) to be key value compliant
+}
+
+
 @property (nonatomic, strong) NSMutableArray *mediaItems;
 
 @end
@@ -117,4 +121,40 @@
 {
     [(NSMutableArray*)self.mediaItems removeObjectAtIndex:indexToRemove];
 }
+
+#pragma mark - Key/Value Observing 
+//Below, we add accessor methods to allow observers to be notified when the content of the array changes:
+- (NSUInteger) countOfMediaItems {
+    return self.mediaItems.count;
+} //This method will be discovered by key name. countOf<Key> is one of the required accessor methods. It indicates that the signature mut begin with countOf which must then be proceeded by thacapitalized name of your key. Our key is mediaItems and the capitalized version of it is MediaItems, hence the full signature of the method will be countOfMediaItems
+
+
+
+- (id) objectInMediaItemsAtIndex:(NSUInteger)index {
+    return [self.mediaItems objectAtIndex:index];
+    }
+
+- (NSArray *) mediaItemsAtIndexes:(NSIndexSet *)indexes {
+    return [self.mediaItems objectsAtIndexes:indexes];
+}
+
+- (void) insertObject:(BLCMedia *)object inMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems insertObject:object atIndex:index];
+}
+
+- (void) removeObjectFromMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems removeObjectAtIndex:index];
+}
+
+- (void) replaceObjectInMediaItemsAtIndex:(NSUInteger)index withObject:(id)object {
+    [_mediaItems replaceObjectAtIndex:index withObject:object];
+}
+
+#pragma mark - Delete an image
+- (void) deleteMediaItem:(BLCMedia *)item {
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+    [mutableArrayWithKVO removeObject:item];
+}
+
+
 @end

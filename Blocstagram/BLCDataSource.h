@@ -8,12 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class BLCMedia;
+
 @interface BLCDataSource : NSObject
 
 +(instancetype) sharedInstance; //This will return the single instance that exists for this class. If the instance has not yet been created then this method will create it before returning it.
 
 @property (nonatomic, strong, readonly) NSArray *mediaItems; //We make this property readonly to make sure that other classes aren't able to modify it
 
--(void)removeDataItem:(NSUInteger)indexToRemove;
+//-(void)removeDataItem:(NSUInteger)indexToRemove;
+
+- (void) deleteMediaItem:(BLCMedia *)item;
 
 @end

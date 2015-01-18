@@ -25,6 +25,7 @@
     return self;
 }
 
+#pragma mark > Key Value Observation
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,14 +48,67 @@
         if (image) {
             [self.images addObject:image];
         }
-    } */
+    }
     
-   // UIImage *images = [[UIImage alloc] init];
+    UIImage *images = [[UIImage alloc] init]; */
     
+    //We register this class, BLCImagesTableView Controller, for Key Value Observation of mediaItems below:
+    
+    [[BLCDataSource sharedInstance] addObserver:self forKeyPath:@"mediaItems" options:0 context:nil];
     
     [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
     
 }
+
+- (void) dealloc
+{
+    [[BLCDataSource sharedInstance] removeObserver:self forKeyPath:@"mediaItems"];
+} //Whenever a class is added as an observer, it must also remove itself as an observer later
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == [BLCDataSource sharedInstance] && [keyPath isEqualToString:@"mediaItems"]) {
+        // This "if" statement checks two things: (1) Is this update coming from the BLCDataSource object we registered with? (2) Is mediaItems the updated key?
+    
+        //We know mediaITems changed. Let's see what kind of change it is.
+        int kindOfChange = [change[NSKeyValueChangeKindKey] intValue];
+        
+        if (kindOfChange == NSKeyValueChangeSetting) {
+            //Someone set a brand new images array
+            [self.tableView reloadData];
+        } else if (kindOfChange == NSKeyValueChangeInsertion ||
+                   kindOfChange == NSKeyValueChangeRemoval ||
+                   kindOfChange == NSKeyValueChangeReplacement) {
+            //We have an incremental change: inserted, deleted, or replaced images
+            
+            // Get a list of the index (or indices) that changed
+            NSIndexSet *indexSetofChanges = change[NSKeyValueChangeIndexesKey];
+            
+            //Convert this NSIndexSet to an NSArray of NSIndexPaths (which is what the table view animation methods require)
+            NSMutableArray *indexPathsThatChanged = [NSMutableArray array];
+            [indexSetofChanges enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+                NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+                [indexPathsThatChanged addObject:newIndexPath];
+            }];
+            
+            // Call 'beginUpdates' to tell the table view we're about to make changes
+            [self.tableView beginUpdates];
+            
+            //Tell the table view what the changes are
+            if (kindOfChange == NSKeyValueChangeInsertion) {
+                [self.tableView insertRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
+            } else if (kindOfChange == NSKeyValueChangeRemoval) {
+                [self.tableView deleteRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
+            } else if (kindOfChange == NSKeyValueChangeReplacement) {
+                [self.tableView reloadRowsAtIndexPaths:indexPathsThatChanged withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            
+            //Tell the table view that we're done telling it about changes, and to complete the animation
+            [self.tableView endUpdates];
+    
+    }
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -122,32 +176,43 @@
 //tableView:canEditRowAtIndexPath
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    //If an image is deleted, remove it from the list
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //Delete the row from the data source
+        BLCMedia *item = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
+        [[BLCDataSource sharedInstance] deleteMediaItem:item];
+    }
+    
+    
+    /*
+    If an image is deleted, remove it from the list
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the image from the image array
         
-        //Remove from the list - 12/28/14 success! :D
-//        [self.images removeObjectAtIndex:[indexPath row]];
-//        [tableView reloadData];
+        Remove from the list - 12/28/14 success! :D
+        [self.images removeObjectAtIndex:[indexPath row]];
+        [tableView reloadData];
         
         
-        //[[self items] removeObjectAtIndex:[indexPath row]];
-        
+        [[self items] removeObjectAtIndex:[indexPath row]]; */
+    
+    /*
         [[BLCDataSource sharedInstance] removeDataItem:indexPath.row];
         
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [tableView endUpdates];
 
-        /*Below are the two failed attempts to delete the image that I tried
+        Below are the two failed attempts to delete the image that I tried
         #1 [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
         #2 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade]; */
 
         
 
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    /*} else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
+    } */
+
 }
 
 
@@ -195,3 +260,4 @@
 
 
 @end
+
