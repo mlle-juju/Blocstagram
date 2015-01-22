@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-
+#import "BLCDataSource.h"
 @interface BlocstagramTests : XCTestCase
 
 @end
@@ -25,9 +25,13 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)testDataSource {
     // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+    BLCDataSource *ds = [BLCDataSource sharedInstance];
+    NSInteger sizeOfData = ds.mediaItems.count;
+    [ds deleteMediaItem:ds.mediaItems[0]];
+    
+    XCTAssert(ds.mediaItems.count == (sizeOfData-1), @"Wrong number of items, should be %ld but got %ld",(sizeOfData-1),ds.mediaItems.count);
 }
 
 - (void)testPerformanceExample {

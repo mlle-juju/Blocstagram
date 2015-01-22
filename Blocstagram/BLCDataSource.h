@@ -10,6 +10,8 @@
 
 @class BLCMedia;
 
+typedef void (^BLCNewItemCompletionBlock)(NSError *error);
+
 @interface BLCDataSource : NSObject
 
 +(instancetype) sharedInstance; //This will return the single instance that exists for this class. If the instance has not yet been created then this method will create it before returning it.
@@ -19,5 +21,9 @@
 //-(void)removeDataItem:(NSUInteger)indexToRemove;
 
 - (void) deleteMediaItem:(BLCMedia *)item;
+
+- (void) requestNewItemsWithCompletionHandler:(BLCNewItemCompletionBlock)completionHandler;
+
+- (void) requestOldItemsWithCompletionHandler:(BLCNewItemCompletionBlock)completionHandler;
 
 @end

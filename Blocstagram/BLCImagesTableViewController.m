@@ -56,9 +56,15 @@
     
     [[BLCDataSource sharedInstance] addObserver:self forKeyPath:@"mediaItems" options:0 context:nil];
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshControlDidFire:) forControlEvents:UIControlEventValueChanged];
+    
+    
     [self.tableView registerClass:[BLCMediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
     
+    
 }
+
 
 - (void) dealloc
 {
@@ -113,6 +119,29 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Refresh the images
+- (void) refreshControlDidFire:(UIRefreshControl *) sender {
+    [[BLCDataSource sharedInstance] requestNewItemsWithCompletionHandler:^(NSError *error) {
+        [sender endRefreshing];
+    }];
+    
+}
+
+- (void) infiniteScrollIfNecessary {
+    NSIndexPath *bottomIndexPath = [[self.tableView indexPathsForVisibleRows] lastObject];
+    
+    if (bottomIndexPath && bottomIndexPath.row == [BLCDataSource sharedInstance].mediaItems.count - 1) {
+        //The very last cell is on screen
+        [[BLCDataSource sharedInstance] requestOldItemsWithCompletionHandler:nil];
+        
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self infiniteScrollIfNecessary];
 }
 
 
@@ -180,7 +209,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //Delete the row from the data source
         BLCMedia *item = [BLCDataSource sharedInstance].mediaItems[indexPath.row];
-        [[BLCDataSource sharedInstance] deleteMediaItem:item];
+        [[BLCDataSource sharedInstance] deleteMediaItem:item]; //This line is what actually does the deletion of the image. Before that, I may have been able to make the image dissappear but it was still in the data source and would show up again if I reloaded or something like that. (Paul 1/19/15)
     }
     
     
