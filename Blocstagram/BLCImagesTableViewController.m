@@ -67,6 +67,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UIScrollViewDelegate
+/*- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  [self infiniteScrollIfNecessary];
+}*/
+
 
 #pragma mark - Table view data source
 
