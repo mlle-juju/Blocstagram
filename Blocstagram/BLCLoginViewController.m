@@ -55,8 +55,28 @@ NSString *const BLCLoginViewControllerDidGetAccessTokenNotification = @"BLCLogin
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [self.webView loadRequest:request];
     }
-  
+    
+    
 }
+
+- (void)goHome {
+    /*
+    NSString *urlString = [NSString stringWithFormat:@"https://instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token", [BLCDataSource instagramClientID], [self redirectURI]];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    if (url ) {
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        [self.webView loadRequest:request];
+    }
+    */
+    while (self.webView.canGoBack) {
+        [self.webView goBack];
+    }
+
+    self.navigationItem.leftBarButtonItem = nil;
+    NSLog(@"Went Home");
+}
+
 
 /*When the login controller gets deallocated, we need to do 2 things:
 1. Set the web view's delegate to nil (this is a quirk of UIWebViewl most objects don't require this)
@@ -81,9 +101,7 @@ NSString *const BLCLoginViewControllerDidGetAccessTokenNotification = @"BLCLogin
         }
     }
 }
-//NSHTTPCookieStorage, sometimes called THE COOKIE JAR :D stores and manages web site cookies, which are represented as NSHTTPCookie objects
-
-#pragma mark - Get that access token girl
+//NSHTTPCoo Get that access token girl
 //This method searches for a URL containing the redirect URI, and then sets the access token to everything after access_token=.
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *urlString = request.URL.absoluteString;
@@ -96,8 +114,16 @@ NSString *const BLCLoginViewControllerDidGetAccessTokenNotification = @"BLCLogin
         //[NSNotificationCenter defaultCenter] is another example of the singleton pattern
 
         [[NSNotificationCenter defaultCenter] postNotificationName:BLCLoginViewControllerDidGetAccessTokenNotification object:accessToken];
+        
+      //  [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+          self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         return NO;
         
+    } else {
+        if (webView.canGoBack) {
+            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)];
+
+        }
     }
     return YES;
 
