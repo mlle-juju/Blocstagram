@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BLCLoginViewController.h"
+#import "BLCDataSource.h"
 
 @interface BLCAppDelegate : UIResponder <UIApplicationDelegate>
 

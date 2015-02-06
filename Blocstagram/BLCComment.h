@@ -12,6 +12,8 @@
 
 @interface BLCComment : NSObject
 
+- (instancetype) initWithDictionary:(NSDictionary *)commentDictionary;
+
 @property (nonatomic, strong) NSString *idNumber;
 @property (nonatomic, strong) BLCUser *from;
 @property (nonatomic, strong) NSString *text;

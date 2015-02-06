@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "BLCComment.h"
 
 @class BLCUser;
 
 @interface BLCMedia : NSObject
+- (instancetype) initWithDictionary:(NSDictionary *)mediaDictionary;
 
 @property (nonatomic, strong) NSString *idNumber;
 @property (nonatomic, strong) BLCUser *user;
