@@ -11,7 +11,8 @@
 #import "BLCMedia.h"
 #import "BLCComment.h"
 #import "BLCLoginViewController.h"
-
+// Use quotes (" ") when importing local files; use angle brackets (< >) when importing external files (below).
+#import <UICKeyChainStore.h>
 
 @interface BLCDataSource () {
     NSMutableArray *_mediaItems; //An array must be accesible as an instance variable names _<key> or by a method named -<key> to be (which returns a reference to the array) to be key value compliant
@@ -42,15 +43,43 @@
     self = [super init];
     
     if (self) {
+        self.accessToken = [UICKeyChainStore stringForKey:@"access token"];
+        
+        if (!self.accessToken) {
         [self registerForAccessTokenNotification]; // Register and respond to the notification that a user logs in
+        } else {
+            //Read the file at launch - find the file at the path and convert it into an array. If this read-code finds an array of at least one item, it displays it immediately. (We make a mutableCopy since the copy stored to disk is immutable.) If not, it gets the initial data from the server.
+            
+
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSString *fullPath = [self pathForFilename:NSStringFromSelector(@selector(mediaItems))];
+                NSArray *storedMediaItems = [NSKeyedUnarchiver unarchiveObjectWithFile:fullPath];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (storedMediaItems.count > 0) {
+                        NSMutableArray *mutableMediaItems = [storedMediaItems mutableCopy];
+                        
+                        [self willChangeValueForKey:@"mediaItems"];
+                        self.mediaItems = mutableMediaItems;
+                        [self didChangeValueForKey:@"mediaItems"];
+                    } else {
+                        [self populateDataWithParameters:nil completionHandler:nil];
+                    }
+                });
+            });
+        
+        
+        
+        }
     
     }
-    return self;
+    return self; // Now the access token will be saved and restored upon app launch
     
 }
 - (void) registerForAccessTokenNotification {
     [[NSNotificationCenter defaultCenter] addObserverForName:BLCLoginViewControllerDidGetAccessTokenNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         self.accessToken = note.object;
+        [UICKeyChainStore setString:self.accessToken forKey:@"access token"];
         //Got a token, populate the initial data
         [self populateDataWithParameters:nil completionHandler:nil];
         
@@ -344,6 +373,26 @@
         [self didChangeValueForKey:@"mediaItems"];
     }
     
+    if (tmpMediaItems.count > 0) {
+        //write the changes to disk
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSUInteger numberOfItemsToSave = MIN(self.mediaItems.count, 50);
+            NSArray *mediaItemsToSave = [self.mediaItems subarrayWithRange:NSMakeRange(0, numberOfItemsToSave)];
+            
+            NSString *fullPath = [self pathForFilename:NSStringFromSelector(@selector(mediaItems))];
+            NSData *mediaItemData = [NSKeyedArchiver archivedDataWithRootObject:mediaItemsToSave];
+            
+            NSError *dataError;
+            BOOL wroteSuccessfully = [mediaItemData writeToFile:fullPath options:NSDataWritingAtomic | NSDataWritingFileProtectionCompleteUnlessOpen error:&dataError];
+            
+            if (!wroteSuccessfully) {
+                NSLog(@"Couldn't write file: %@", dataError);
+            }
+
+        
+        
+        });
+    }
     
 }
 
@@ -376,6 +425,14 @@
     }
 }
 
-
+#pragma mark - Adding NSKeyedArchiver
+//NSKeyedArchiver saves and reads the archived files
+- (NSString *) pathForFilename:(NSString *) filename {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths firstObject];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:filename];
+    return dataPath;
+    //This code creates a string containing an absolute path to the user's documents directory, like /somedir/someotherdir/filename
+}
 
 @end

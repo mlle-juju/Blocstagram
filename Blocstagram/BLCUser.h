@@ -10,7 +10,8 @@
 #import <UIKit/UIKit.h>
 // 12.29.14 I imported UIKit because it was recommended on StackOverflow to resolve the error of "Unknown type name 'UIImage'" on the property line
 
-@interface BLCUser : NSObject
+@interface BLCUser : NSObject <NSCoding>
+//NSCoding is a protocol we want our object to conform to
 
 -(instancetype) initWithDictionary:(NSDictionary *)userDictionary;
 
