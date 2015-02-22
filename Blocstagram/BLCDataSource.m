@@ -179,7 +179,7 @@
     [mutableArrayWithKVO removeObject:item];
 }
 
-#pragma mark - Weird completion Handlers
+#pragma mark - Completion Handlers
 - (void) requestNewItemsWithCompletionHandler:(BLCNewItemCompletionBlock)completionHandler {
     self.thereAreNoMoreOlderMessages = NO;
 
@@ -204,7 +204,10 @@
         }*/
         
         NSString *minID = [[self.mediaItems firstObject] idNumber];
-        NSDictionary *parameters = @{@"min_id": minID};
+        NSDictionary *parameters = @{};
+        if (minID != nil) {
+            parameters = @{@"min_id": minID};
+        }
         
         [self populateDataWithParameters:parameters completionHandler:^(NSError *error) {
             self.isRefreshing = NO;
