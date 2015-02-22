@@ -11,13 +11,15 @@
 #import "BLCComment.h"
 #import "BLCUser.h"
 
-@interface BLCMediaTableViewCell ()
+@interface BLCMediaTableViewCell ()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UIImageView *mediaImageView;
 @property (nonatomic, strong) UILabel *usernameAndCaptionLabel;
 @property (nonatomic, strong) UILabel *commentLabel;
 @property (nonatomic, strong) NSLayoutConstraint *imageHeightConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *usernameAndCaptionLabelHeightConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *commentLabelHeightConstraint;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @end
 
 static UIFont *lightFont;
@@ -34,6 +36,17 @@ static NSParagraphStyle *paragraphStyle;
     if (self) {
         //Initialization code
         self.mediaImageView = [[UIImageView alloc] init];
+        
+        self.mediaImageView.userInteractionEnabled = YES;
+        self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFired:)];
+        self.tapGestureRecognizer.delegate = self;
+        [self.mediaImageView addGestureRecognizer:self.tapGestureRecognizer];
+        
+        self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressFired:)];
+        self.longPressGestureRecognizer.delegate = self;
+        [self.mediaImageView addGestureRecognizer:self.longPressGestureRecognizer];
+        
+        
         self.usernameAndCaptionLabel = [[UILabel alloc] init];
         self.commentLabel = [[UILabel alloc] init];
         self.commentLabel.numberOfLines = 0;
@@ -81,6 +94,25 @@ static NSParagraphStyle *paragraphStyle;
     
     paragraphStyle = mutableParagraphStyle;
 }
+
+#pragma mark - Image View
+//Add the target method, called cell:didTapImageView:
+- (void) tapFired:(UITapGestureRecognizer *)sender {
+    [self.delegate cell:self didTapImageView:self.mediaImageView];
+}
+
+- (void) longPressFired:(UILongPressGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        [self.delegate cell:self didLongPressImageView:self.mediaImageView];
+    }
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+/*When the user swipes the cell (picture) to show the delete button, then taps on the cell, the expected behavior is to hide the delete button. I add the code below so that the expected behavior is changed so that the app zooms in on the image. To accomplish this new expected behavior, I make sure the gesture recognizer only fires while the cell isn't in editing mode. */
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return self.isEditing == NO;
+}
+
 
 #pragma mark My First Attributed Strings
 - (NSAttributedString *) usernameAndCaptionString {
@@ -134,6 +166,12 @@ static NSParagraphStyle *paragraphStyle;
     self.usernameAndCaptionLabelHeightConstraint.constant = usernameLabelSize.height + 20;
     self.commentLabelHeightConstraint.constant = commentLabelSize.height + 20;
 
+    if (_mediaItem.image) {
+        self.imageHeightConstraint.constant = self.mediaItem.image.size.height / self.mediaItem.image.size.width * CGRectGetWidth(self.contentView.bounds);
+    } else {
+        self.imageHeightConstraint.constant = 0;
+    }
+    
     
     //Hide the line between cells
     self.separatorInset = UIEdgeInsetsMake(0,0,0, CGRectGetWidth(self.bounds));
@@ -147,11 +185,14 @@ static NSParagraphStyle *paragraphStyle;
     self.usernameAndCaptionLabel.attributedText = [self usernameAndCaptionString];
     self.commentLabel.attributedText = [self commentString];
     
+    /*
+     To avoid any issues redrawing the cells if the user rotates the device while the full-screen image is showing, remove the calculation of the image height constraint from setMediaItem: and add it to layoutSubviews:
     if (_mediaItem.image) {
         self.imageHeightConstraint.constant = self.mediaItem.image.size.height / self.mediaItem.image.size.width * CGRectGetWidth(self.contentView.bounds);
     } else {
         self.imageHeightConstraint.constant = 0;
     }
+    */
     
 }
 
