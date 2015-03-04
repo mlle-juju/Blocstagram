@@ -45,7 +45,7 @@
     if (self) {
         self.accessToken = [UICKeyChainStore stringForKey:@"access token"];
         
-        if (!self.accessToken) {
+       if (!self.accessToken) {
         [self registerForAccessTokenNotification]; // Register and respond to the notification that a user logs in
         } else {
             //Read the file at launch - find the file at the path and convert it into an array. If this read-code finds an array of at least one item, it displays it immediately. (We make a mutableCopy since the copy stored to disk is immutable.) If not, it gets the initial data from the server.
@@ -58,6 +58,13 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (storedMediaItems.count > 0) {
                         NSMutableArray *mutableMediaItems = [storedMediaItems mutableCopy];
+                        
+                    //The 3 lines below are Paul's fix to update the init method in BLCDataSource to download images if necessary for each retrieved saved record
+                        
+                        for (BLCMedia *item in mutableMediaItems) {
+                            [self downloadImageForMediaItem:item];
+                        }
+                        
                         
                         [self willChangeValueForKey:@"mediaItems"];
                         self.mediaItems = mutableMediaItems;
@@ -208,7 +215,7 @@
     [mutableArrayWithKVO removeObject:item];
 }
 
-#pragma mark - Weird completion Handlers
+#pragma mark - Completion Handlers
 - (void) requestNewItemsWithCompletionHandler:(BLCNewItemCompletionBlock)completionHandler {
     self.thereAreNoMoreOlderMessages = NO;
 
@@ -416,6 +423,7 @@
                         NSUInteger index = [mutableArrayWithKVO indexOfObject:mediaItem];
                         [mutableArrayWithKVO replaceObjectAtIndex:index withObject:mediaItem];
                     });
+                    
                 }
             } else {
                 NSLog(@"Error downloading image: %@", error);
@@ -424,6 +432,8 @@
         });
     }
 }
+
+
 
 #pragma mark - Adding NSKeyedArchiver
 //NSKeyedArchiver saves and reads the archived files

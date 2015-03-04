@@ -12,10 +12,12 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIButton *shareButton;
 
 - (instancetype) initWithMedia:(BLCMedia *)media;
 //This is just like other view controllers I made - it has a custom initializer; in this one, we pass it a BLCMedia object for it to display.
 
 - (void) centerScrollView;
+
 
 @end

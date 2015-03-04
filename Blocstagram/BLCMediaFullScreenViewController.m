@@ -15,7 +15,6 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
 
-
 @end
 
 @implementation BLCMediaFullScreenViewController
@@ -68,6 +67,11 @@
     [self.scrollView addGestureRecognizer:self.tap];
     [self.scrollView addGestureRecognizer:self.doubleTap];
     
+    self.shareButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.shareButton setTitle:@"Share" forState:UIControlStateNormal];
+    self.shareButton.frame = CGRectMake(0, 0, 100, 80);
+    [self.shareButton addTarget:self action:@selector(shareButtonFired:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.shareButton];
     
 }
 
@@ -75,6 +79,23 @@
 
 - (void) tapFired:(UITapGestureRecognizer *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)shareButtonFired:(id)sender {
+    NSLog(@"you hit share");
+    self.shareButton = sender;
+    UIActivityViewController *shareFullScreenPhotoActivityViewController;
+    [self presentViewController:shareFullScreenPhotoActivityViewController animated:YES completion:nil]; 
+    
+    
+    /* if (self.shareButton == self.shareButton.touchInside) {
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:(NSArray *) applicationActivities:nil];
+        [BLCMediaFullScreenViewController load:activityViewController
+                                      animated:YES
+                                    completion:^{
+                                    }];
+    } */
+    
 }
 
 - (void) doubleTapFired:(UITapGestureRecognizer *)sender {
@@ -160,6 +181,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+
 
 /*
 #pragma mark - Navigation
