@@ -22,11 +22,15 @@
         
         if (standardResolutionImageURL) {
             self.mediaURL = standardResolutionImageURL;
+            //If we hadn't set a default value (below), the default value would automatically be set to BLCMediaDownloadStateNeedsImage. This is because properties that are simple types are initialized to 0 by default (similar to how objects are nil by default).
+            
+            self.downloadState = BLCMediaDownloadStateNeedsImage;
+        } else {
+            self.downloadState = BLCMediaDownloadStateNonRecoverableError;
         }
-    
         
-        
-        
+            
+
         NSDictionary *captionDictionary = mediaDictionary[@"caption"];
         
         //Caption might be null (if there's no caption)
@@ -60,6 +64,16 @@
         self.user = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(user))];
         self.mediaURL = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(mediaURL))];
         self.image = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(image))];
+
+        if (self.image) {
+            self.downloadState = BLCMediaDownloadStateHasImage;
+        } else if (self.mediaURL) {
+            self.downloadState = BLCMediaDownloadStateNeedsImage;
+        } else {
+            self.downloadState = BLCMediaDownloadStateNonRecoverableError;
+        }
+       
+        
         self.caption = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(caption))];
         self.comments = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(comments))];
     }
