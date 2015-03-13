@@ -84,17 +84,15 @@
 - (IBAction)shareButtonFired:(id)sender {
     NSLog(@"you hit share");
     self.shareButton = sender;
-    UIActivityViewController *shareFullScreenPhotoActivityViewController;
-    [self presentViewController:shareFullScreenPhotoActivityViewController animated:YES completion:nil]; 
+    //UIActivityViewController *shareFullScreenPhotoActivityViewController;
     
+    //[self presentViewController:shareFullScreenPhotoActivityViewController animated:YES completion:nil];
+
     
-    /* if (self.shareButton == self.shareButton.touchInside) {
-        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:(NSArray *) applicationActivities:nil];
-        [BLCMediaFullScreenViewController load:activityViewController
-                                      animated:YES
-                                    completion:^{
-                                    }];
-    } */
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[self.imageView.image] applicationActivities:nil];
+        [self presentViewController:activityViewController animated:YES completion:^{
+            
+        }];
     
 }
 
