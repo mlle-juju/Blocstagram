@@ -8,7 +8,9 @@
 
 #import "BLCMedia.h"
 #import "BLCUser.h"
+
 @implementation BLCMedia
+
 - (instancetype) initWithDictionary:(NSDictionary *)mediaDictionary {
     self = [super init];
     
@@ -22,6 +24,9 @@
             self.mediaURL = standardResolutionImageURL;
         }
     
+        
+        
+        
         NSDictionary *captionDictionary = mediaDictionary[@"caption"];
         
         //Caption might be null (if there's no caption)
