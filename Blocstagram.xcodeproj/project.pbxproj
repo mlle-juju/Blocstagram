@@ -19,6 +19,8 @@
 		93937BAB1A57232B0015B6FF /* BLCMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 93937BAA1A57232B0015B6FF /* BLCMedia.m */; };
 		93937BAE1A572BB90015B6FF /* BLCComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 93937BAD1A572BB90015B6FF /* BLCComment.m */; };
 		93937BB11A572CE00015B6FF /* BLCDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 93937BB01A572CE00015B6FF /* BLCDataSource.m */; };
+		939EE4571AB3A2C800319302 /* BLCCircleSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939EE4561AB3A2C800319302 /* BLCCircleSpinnerView.m */; };
+		939EE45A1AB3A72900319302 /* BLCLikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 939EE4591AB3A72900319302 /* BLCLikeButton.m */; };
 		93AF32CF1A43A1710072A004 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93AF32CE1A43A1710072A004 /* Default-568h@2x.png */; };
 		93E252E41A4283B0006CD452 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252E31A4283B0006CD452 /* main.m */; };
 		93E252E71A4283B0006CD452 /* BLCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E252E61A4283B0006CD452 /* BLCAppDelegate.m */; };
@@ -67,6 +69,10 @@
 		93937BAD1A572BB90015B6FF /* BLCComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCComment.m; sourceTree = "<group>"; };
 		93937BAF1A572CE00015B6FF /* BLCDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCDataSource.h; sourceTree = "<group>"; };
 		93937BB01A572CE00015B6FF /* BLCDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCDataSource.m; sourceTree = "<group>"; };
+		939EE4551AB3A2C800319302 /* BLCCircleSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCCircleSpinnerView.h; sourceTree = "<group>"; };
+		939EE4561AB3A2C800319302 /* BLCCircleSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCCircleSpinnerView.m; sourceTree = "<group>"; };
+		939EE4581AB3A72900319302 /* BLCLikeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLCLikeButton.h; sourceTree = "<group>"; };
+		939EE4591AB3A72900319302 /* BLCLikeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLCLikeButton.m; sourceTree = "<group>"; };
 		93AF32CE1A43A1710072A004 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		93E252DE1A4283B0006CD452 /* Blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93E252E21A4283B0006CD452 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -147,6 +153,10 @@
 				93E252E61A4283B0006CD452 /* BLCAppDelegate.m */,
 				93E252E81A4283B0006CD452 /* BLCViewController.h */,
 				93E252E91A4283B0006CD452 /* BLCViewController.m */,
+				939EE4551AB3A2C800319302 /* BLCCircleSpinnerView.h */,
+				939EE4561AB3A2C800319302 /* BLCCircleSpinnerView.m */,
+				939EE4581AB3A72900319302 /* BLCLikeButton.h */,
+				939EE4591AB3A72900319302 /* BLCLikeButton.m */,
 				93E252EE1A4283B0006CD452 /* Images.xcassets */,
 				93E2531C1A428AB4006CD452 /* BLCImagesTableViewController.h */,
 				93E2531D1A428AB4006CD452 /* BLCImagesTableViewController.m */,
@@ -367,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				939EE45A1AB3A72900319302 /* BLCLikeButton.m in Sources */,
 				93E252EA1A4283B0006CD452 /* BLCViewController.m in Sources */,
 				93245AE71A9A7610001E8DDB /* BLCMediaFullScreenViewController.m in Sources */,
 				93E252E71A4283B0006CD452 /* BLCAppDelegate.m in Sources */,
@@ -378,6 +389,7 @@
 				934B296C1A525C4600BF2D5D /* BLCUser.m in Sources */,
 				93937BB11A572CE00015B6FF /* BLCDataSource.m in Sources */,
 				9309C8421A770AC90009C0CD /* BLCLoginViewController.m in Sources */,
+				939EE4571AB3A2C800319302 /* BLCCircleSpinnerView.m in Sources */,
 				93937BAE1A572BB90015B6FF /* BLCComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
