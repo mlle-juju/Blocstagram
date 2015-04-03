@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Blocstagram/BLCMediaTableViewCell.m"
-            timestampString = "447298122.112874"
+            timestampString = "449708862.627621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-twoFingerFired:"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-usernameAndCaptionString"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
