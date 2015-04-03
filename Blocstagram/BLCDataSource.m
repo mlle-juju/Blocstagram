@@ -448,4 +448,59 @@
     //This code creates a string containing an absolute path to the user's documents directory, like /somedir/someotherdir/filename
 }
 
+#pragma mark - Liking Media Items
+
+- (void) toggleLikeOnMediaItem:(BLCMedia *)mediaItem {
+    NSString *urlString = [NSString stringWithFormat:@"media/%@/likes", mediaItem.idNumber];
+    NSDictionary *parameters = @{@"access_token": self.accessToken};
+    
+    if (mediaItem.likeState == BLCLikeStateNotLiked) {
+        
+        mediaItem.likeState = BLCLikeStateLiking;
+        
+        __block int numberOfLikes;
+        [self.instagramOperationManager GET:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                numberOfLikes = [(NSArray*)[(NSDictionary*)responseObject objectForKey:@"data"] count];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            numberOfLikes = -1;
+        }];
+        
+        [self.instagramOperationManager
+            POST:urlString
+         parameters:parameters
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            mediaItem.likeState = BLCLikeStateLiked;
+            [self reloadMediaItem:mediaItem];
+        }
+         
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            mediaItem.likeState = BLCLikeStateNotLiked;
+            [self reloadMediaItem:mediaItem];
+        }];
+        
+    } else if (mediaItem.likeState == BLCLikeStateLiked) {
+        
+        mediaItem.likeState = BLCLikeStateUnliking;
+        
+        [self.instagramOperationManager DELETE:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            mediaItem.likeState = BLCLikeStateNotLiked;
+            [self reloadMediaItem:mediaItem];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            mediaItem.likeState = BLCLikeStateLiked;
+            [self reloadMediaItem:mediaItem];
+        }];
+        
+    }
+    
+    [self reloadMediaItem:mediaItem];
+}
+
+- (void) reloadMediaItem:(BLCMedia *)mediaItem {
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+    NSUInteger index = [mutableArrayWithKVO indexOfObject:mediaItem];
+    [mutableArrayWithKVO replaceObjectAtIndex:index withObject:mediaItem];
+}
+
 @end

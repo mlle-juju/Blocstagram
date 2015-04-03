@@ -221,6 +221,10 @@
         [[BLCDataSource sharedInstance] downloadImageForMediaItem:mediaItem];
     }
 }
+//
+//- (NSArray *)visibleCells {
+//    
+//}
 
 #pragma mark - Cell height
 
@@ -229,6 +233,9 @@
     BLCMedia *item = [self items][indexPath.row];
     return [BLCMediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
 }
+
+
+
 
 #pragma mark - Let's delete those rows
 
@@ -362,6 +369,10 @@
 
 -(NSArray *)items {
     return [BLCDataSource sharedInstance].mediaItems;
+}
+
+- (void) cellDidPressLikeButton:(BLCMediaTableViewCell *)cell {
+    [[BLCDataSource sharedInstance] toggleLikeOnMediaItem:cell.mediaItem];
 }
 
 
