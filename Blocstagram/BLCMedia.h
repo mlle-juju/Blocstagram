@@ -35,5 +35,6 @@ typedef NS_ENUM(NSInteger, BLCMediaDownloadState) {
 @property (nonatomic, strong) NSArray *comments;
 @property (nonatomic, assign) BLCMediaDownloadState downloadState; //We'll keep track of an individual media item's download state in this property. Property is "assign" instead of "strong" because BLCMediaDownloadState is a simple type (NSInteger) not an object
 @property (nonatomic, assign) BLCLikeState likeState;
+@property (nonatomic, strong) NSString *temporaryComment;
 
 @end
